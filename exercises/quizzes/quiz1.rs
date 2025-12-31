@@ -16,6 +16,23 @@ fn main() {
     // You can optionally experiment here.
 }
 
+pub fn calculate_price_of_apples(order: i32) -> i32 {
+    let apple_price = 2;
+    let apple_after_forty = 1;
+    let apple_limit = 40;
+
+    let total_cost: i32;
+
+    if order > apple_limit {
+        total_cost = order * apple_after_forty;
+        return total_cost;
+    }
+
+    total_cost = order * apple_price;
+
+    return total_cost;
+}
+
 // Don't change the tests!
 #[cfg(test)]
 mod tests {
