@@ -20,18 +20,26 @@ enum Fruit {
 }
 
 fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
-    let fruit_kinds = [
-        Fruit::Apple,
-        Fruit::Banana,
-        Fruit::Mango,
-        Fruit::Lychee,
-        Fruit::Pineapple,
-    ];
+    let fruit_kinds = [Fruit::Apple, Fruit::Banana, Fruit::Mango, Fruit::Lychee, Fruit::Pineapple];
 
     for fruit in fruit_kinds {
         // TODO: Insert new fruits if they are not already present in the
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
+        let fruit_in_basket = basket.get(&fruit);
+
+        match fruit_in_basket {
+            Some(basket_fruit) => {
+                println!("{basket_fruit} the fruit is already present inside the basket !");
+            }
+            None => {
+                basket.insert(fruit, 4);
+            }
+        }
+
+        // instead of match statement you can use entry hashmap method
+        // which essentially means : Get the entry for this key. If it's empty (vacant), insert this value
+        // basket.entry(fruit).or_insert(4);
     }
 }
 
@@ -45,7 +53,11 @@ mod tests {
 
     // Don't modify this function!
     fn get_fruit_basket() -> HashMap<Fruit, u32> {
-        let content = [(Fruit::Apple, 4), (Fruit::Mango, 2), (Fruit::Lychee, 5)];
+        let content = [
+            (Fruit::Apple, 4),
+            (Fruit::Mango, 2),
+            (Fruit::Lychee, 5),
+        ];
         HashMap::from_iter(content)
     }
 
